@@ -1,9 +1,13 @@
 # web-api-twittier
 
-## development
+## install
 
-Run `grunt` dev for developpement
+Run `npm` install to install dependencies.
 
 ## Build 
 
-Run `build` for building.
+Run `grunt build` for building.
+
+## development
+
+Run `grunt dev` serve for developpement
