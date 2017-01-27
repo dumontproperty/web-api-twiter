@@ -1,0 +1,34 @@
+<div>
+    <aside id="sidebar" class="sidebar c-overflow">
+        <div class="s-profile">
+            <a href="" data-ma-action="profile-menu-toggle">
+                <div class="sp-pic">
+                    <img src="assets/profile-pics/2.jpg" alt="">
+                </div>
+                <div class="sp-info">
+                    Welcome {{USER_NAME}} !
+                    <i class="zmdi zmdi-caret-down"></i>
+                </div>
+            </a>
+
+            <ul class="main-menu">
+                <li>
+                    <a href="/profile"><i class="zmdi zmdi-account active"></i>Profile</a>
+                </li>
+                <li>
+                    <a href="" ng-click="logout()"><i class="zmdi zmdi-time-restore"></i>Logout</a>
+                </li>
+            </ul>
+        </div>
+
+        <ul class="main-menu">
+            <li class="active">
+                <a href="/home"><i class="zmdi zmdi-home"></i>Home</a>
+            </li>
+            <li class="">
+                <a href="/createUser"><i class="zmdi  zmdi-account-add"></i>Add user</a>
+            </li>
+        </ul>
+
+    </aside>
+</div>

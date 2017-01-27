@@ -1,0 +1,418 @@
+<div class="block-header">
+    <h2>{{globalUserInformation.name}}
+        <small>{{globalUserInformation.role}}</small>
+    </h2>
+
+<!--    <ul class="actions m-t-20 hidden-xs">
+        <li class="dropdown">
+            <a href="" data-toggle="dropdown">
+                <i class="zmdi zmdi-more-vert"></i>
+            </a>
+
+            <ul class="dropdown-menu dropdown-menu-right">
+                <li>
+                    <a href="">Privacy Settings</a>
+                </li>
+                <li>
+                    <a href="">Account Settings</a>
+                </li>
+                <li>
+                    <a href="">Other Settings</a>
+                </li>
+            </ul>
+        </li>
+    </ul>-->
+</div>
+
+<div class="card" id="profile-main">
+    <!--    <div ng-show="errorMessage !== ''" class="alert alert-danger" style="margin-top:2%; text-align:center;" role="alert">{{errorMessage}}</div>-->
+    <!--    <div class="pm-overview c-overflow mCustomScrollbar _mCS_3 mCS-autoHide" style="overflow: visible;">
+            <div id="mCSB_3" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside" style="max-height: none;" tabindex="0">
+                <div id="mCSB_3_container" class="mCSB_container mCS_x_hidden mCS_no_scrollbar_x" style="position: relative; top: -106px; left: 0px; width: 100%;" dir="ltr">
+    
+                    <div class="pmo-pic">
+                        <div class="p-relative">
+                            <a href="">
+                                <img class="img-responsive mCS_img_loaded" src="app/styles/img/profile-pics/profile-pic-2.jpg" alt="">
+                            </a>
+    
+                            <div class="dropdown pmop-message">
+                                <a data-toggle="dropdown" href="" class="btn bgm-white btn-float z-depth-1 waves-effect waves-circle waves-float">
+                                    <i class="zmdi zmdi-comment-text-alt"></i>
+                                </a>
+    
+                                <div class="dropdown-menu">
+                                    <textarea placeholder="Write something..."></textarea>
+    
+                                    <button class="btn bgm-green btn-float waves-effect waves-circle waves-float"><i class="zmdi zmdi-mail-send"></i>
+                                    </button>
+                                </div>
+                            </div>
+    
+                            <a href="" class="pmop-edit">
+                                <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
+                            </a>
+                        </div>
+    
+    
+                        <div class="pmo-stat">
+                            <h2 class="m-0 c-white">1562</h2>
+                            Total Connections
+                        </div>
+                    </div>
+    
+                    <div class="pmo-block pmo-contact hidden-xs">
+                        <h2>Contact</h2>
+    
+                        <ul>
+                            <li><i class="zmdi zmdi-phone"></i> 00971 12345678 9</li>
+                            <li><i class="zmdi zmdi-email"></i> malinda-h@gmail.com</li>
+                            <li><i class="zmdi zmdi-facebook-box"></i> malinda.hollaway</li>
+                            <li><i class="zmdi zmdi-twitter"></i> @malinda (twitter.com/malinda)</li>
+                            <li>
+                                <i class="zmdi zmdi-pin"></i>
+                                <address class="m-b-0 ng-binding">
+                                    44-46 Morningside Road,<br>
+                                    Edinburgh,<br>
+                                    Scotland
+                                </address>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="pmo-block pmo-items hidden-xs">
+                        <h2>Connections</h2>
+                        <div class="pmob-body">
+                            <div class="row">
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/1.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/2.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/3.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/4.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/5.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/6.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/7.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/8.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/1.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/2.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/3.jpg" alt="">
+                                </a>
+                                <a href="" class="col-xs-2">
+                                    <img class="img-circle mCS_img_loaded" src="app/styles/img/profile-pics/4.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div></div><div id="mCSB_3_scrollbar_vertical" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_vertical" style="display: block;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_vertical" class="mCSB_dragger" style="position: absolute; min-height: 50px; display: block; height: 601px; max-height: 683px; top: 92px;" oncontextmenu="return false;">
+                        <div class="mCSB_dragger_bar" style="line-height: 50px;">
+    
+                        </div></div><div class="mCSB_draggerRail">
+    
+                    </div></div></div>
+            <div id="mCSB_3_scrollbar_horizontal" class="mCSB_scrollTools mCSB_3_scrollbar mCS-minimal-dark mCSB_scrollTools_horizontal" style="display: none;"><div class="mCSB_draggerContainer"><div id="mCSB_3_dragger_horizontal" class="mCSB_dragger" style="position: absolute; min-width: 50px; width: 0px; left: 0px;" oncontextmenu="return false;"><div class="mCSB_dragger_bar"></div></div><div class="mCSB_draggerRail"></div></div></div></div>-->
+
+    <div class="pm-body clearfix">
+
+        <ul class="tab-nav tn-justified">
+            <li ng-class="{'active' : ABOUT}"><a href="" ng-click="navigate('ABOUT')">About</a></li>
+            <li ng-class="{'active' : CHANGE_PASSWORD}"><a href="" ng-click="navigate('CHANGE_PASSWORD')">Change password</a></li>
+            <!--            <li><a href="profile-photos.html">Photos</a></li>
+                        <li><a href="profile-connections.html">Connections</a></li>-->
+        </ul>
+
+        <div ng-if="ABOUT">
+            <div class="pmb-block">               
+                <div class="pmbb-header">
+                    <h2><i class="zmdi zmdi-equalizer m-r-10"></i> Summary</h2>
+
+                    <ul class="actions">
+                        <li class="dropdown">
+                            <a href="" data-toggle="dropdown">
+                                <i class="zmdi zmdi-more-vert"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-ma-action="profile-edit" href="">Edit</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pmbb-body p-l-30">
+                    <div class="pmbb-view">
+                        Summary innerview account.
+                    </div>
+
+                    <div class="pmbb-edit">
+                        <div class="fg-line">
+                            <textarea class="form-control" rows="5" placeholder="Summary...">Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.</textarea>
+                        </div>
+                        <div class="m-t-10">
+                            <button class="btn btn-primary btn-sm waves-effect">Save</button>
+                            <button data-ma-action="profile-edit-cancel" class="btn btn-link btn-sm waves-effect">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                
+               
+            </div>
+
+            <div class="pmb-block">
+                <div class="pmbb-header">
+                    <h2><i class="zmdi zmdi-account m-r-10"></i> Basic Information</h2>
+
+                    <ul class="actions">
+                        <li class="dropdown">
+                            <a href="" data-toggle="dropdown">
+                                <i class="zmdi zmdi-more-vert"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-ma-action="profile-edit" href="">Edit</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pmbb-body p-l-30">
+                    <div class="pmbb-view">
+                        <dl class="dl-horizontal">
+                            <dt>User name</dt>
+                            <dd>{{globalUserInformation.name}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Email Address</dt>
+                            <dd>{{globalUserInformation.email}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>User role</dt>
+                            <dd>{{globalUserInformation.role}}</dd>
+                        </dl>
+                    </div>
+
+                    <div class="pmbb-edit">
+                        <dl class="dl-horizontal">
+                            <dt class="p-t-10">User name</dt>
+                            <dd>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="eg. Mallinda Hollaway">
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <!--                        <dl class="dl-horizontal">
+                                                    <dt class="p-t-10">Email Address</dt>
+                                                    <dd>
+                                                        <div class="fg-line">
+                                                            <select class="form-control">
+                                                                <option>Male</option>
+                                                                <option>Female</option>
+                                                                <option>Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                                <dl class="dl-horizontal">
+                                                    <dt class="p-t-10">Birthday</dt>
+                                                    <dd>
+                                                        <div class="dtp-container dropdown fg-line">
+                                                            <input type="text" class="form-control date-picker" data-toggle="dropdown" placeholder="Click here...">
+                                                        </div>
+                                                    </dd>
+                                                </dl>
+                                                <dl class="dl-horizontal">
+                                                    <dt class="p-t-10">User role</dt>
+                                                    <dd>
+                                                        <div class="fg-line">
+                                                            <select class="form-control">
+                                                                <option>Single</option>
+                                                                <option>Married</option>
+                                                                <option>Other</option>
+                                                            </select>
+                                                        </div>
+                                                    </dd>
+                                                </dl>-->
+
+                        <div class="m-t-30">
+                            <button class="btn btn-primary btn-sm waves-effect">Save</button>
+                            <button data-ma-action="profile-edit-cancel" class="btn btn-link btn-sm waves-effect">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                 <div ng-show="errorMessage !== ''" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+                <div ng-show="successMessage !== ''" class="alert alert-success" role="alert">{{successMessage}}</div>
+            </div>
+
+<!--            <div class="pmb-block">
+                <div class="pmbb-header">
+                    <h2><i class="zmdi zmdi-phone m-r-10"></i> Contact Information</h2>
+
+                    <ul class="actions">
+                        <li class="dropdown">
+                            <a href="" data-toggle="dropdown">
+                                <i class="zmdi zmdi-more-vert"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a data-ma-action="profile-edit" href="">Edit</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="pmbb-body p-l-30">
+                    <div class="pmbb-view">
+                        <dl class="dl-horizontal">
+                            <dt>Mobile Phone</dt>
+                            <dd>00971 12345678 9</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Email Address</dt>
+                            <dd>{{globalUserInformation.email}}</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Twitter</dt>
+                            <dd>@malinda</dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt>Skype</dt>
+                            <dd>malinda.hollaway</dd>
+                        </dl>
+                    </div>
+
+                    <div class="pmbb-edit">
+                        <dl class="dl-horizontal">
+                            <dt class="p-t-10">Mobile Phone</dt>
+                            <dd>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="eg. 00971 12345678 9">
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt class="p-t-10">Email Address</dt>
+                            <dd>
+                                <div class="fg-line">
+                                    <input type="email" class="form-control" placeholder="eg. malinda.h@gmail.com">
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt class="p-t-10">Twitter</dt>
+                            <dd>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="eg. @malinda">
+                                </div>
+                            </dd>
+                        </dl>
+                        <dl class="dl-horizontal">
+                            <dt class="p-t-10">Skype</dt>
+                            <dd>
+                                <div class="fg-line">
+                                    <input type="text" class="form-control" placeholder="eg. malinda.hollaway">
+                                </div>
+                            </dd>
+                        </dl>
+
+                        <div class="m-t-30">
+                            <button class="btn btn-primary btn-sm waves-effect">Save</button>
+                            <button data-ma-action="profile-edit-cancel" class="btn btn-link btn-sm waves-effect">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </div>
+
+        <div ng-if="CHANGE_PASSWORD">           
+            <div class="pmb-block">             
+                <div class="pmbb-header">
+                    <h2><i class="zmdi zmdi-equalizer m-r-10"></i> Change password</h2>
+                </div>
+
+                <div class="card-body card-padding">                  
+                    <form class="row" role="form">
+                        <div class="col-sm-3">
+                            <div class="form-group fg-line">
+                                <label class="sr-only" for="holdPassword">last password</label>
+                                <input type="password" class="form-control input-sm" id="holdPassword" ng-model="userPassword.holdPassword" placeholder="old password">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <div class="form-group fg-line">
+                                <label class="sr-only" for="newPassword">new password</label>
+                                <input type="password" class="form-control input-sm" id="newPassword" ng-model="userPassword.newPassword" placeholder="new password">
+                            </div>
+                        </div>
+
+                        <div class="col-sm-4">
+                            <button type="submit" class="btn btn-primary btn-sm m-t-5 waves-effect" ng-click="changePassword(userPassword)">modifier</button>
+                        </div>
+                    </form>
+                </div>
+                <div ng-show="errorMessage !== ''" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+                <div ng-show="successMessage !== ''" class="alert alert-success" role="alert">{{successMessage}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!--<div class="card">
+    <div class="card-header">
+        <h2>Change password
+            <small>
+                innerview profile
+            </small>
+        </h2>
+    </div>
+
+    <div class="card-body card-padding">
+        <div ng-show="errorMessage !== ''" class="alert alert-danger" role="alert">{{errorMessage}}</div>
+        <form class="row" role="form">
+            <div class="col-sm-3">
+                <div class="form-group fg-line">
+                    <label class="sr-only" for="holdPassword">last password</label>
+                    <input type="password" class="form-control input-sm" id="holdPassword" ng-model="userPassword.holdPassword" placeholder="hold password">
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="form-group fg-line">
+                    <label class="sr-only" for="newPassword">new password</label>
+                    <input type="password" class="form-control input-sm" id="newPassword" ng-model="userPassword.newPassword" placeholder="new password">
+                </div>
+            </div>
+
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary btn-sm m-t-5 waves-effect" ng-click="changePassword(userPassword)">modifier</button>
+            </div>
+        </form>
+    </div>
+</div>-->

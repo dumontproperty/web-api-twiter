@@ -1,0 +1,41 @@
+<div class="card">
+    <div class="card-header">
+        <h2>New user
+            <small> Create a new  user
+            </small>
+        </h2>
+    </div>
+
+    <div class="card-body card-padding">
+        <form role="form">
+            <div class="form-group fg-line">
+                <label for="userRole">User role</label>
+                <br/>
+                <select  id="userRole" ng-model="newUser.role"  style="min-width: 200px;">
+                    <option ng-value="admin" ng-repeat="userRole in userRoles">{{userRole}}</option>
+                </select>
+            </div>
+
+            <div class="form-group fg-line">
+                <label for="userName">Username</label>
+                <input type="text" class="form-control input-sm" id="userName" ng-model="newUser.name" placeholder="username">
+            </div>
+
+            <div class="form-group fg-line">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control input-sm" id="email" ng-model="newUser.email" placeholder="email">
+            </div>
+<!--            <div class="form-group fg-line">
+                <label for="password">Password</label>
+                <input type="password" class="form-control input-sm" id="password" ng-model="newUser.password" placeholder="Password">
+            </div> 
+            <div class="form-group fg-line">
+                <label for="confoirmPassword">Confirm password</label>
+                <input type="password" class="form-control input-sm" id="confoirmPassword" ng-model="newUser.confirmPassword" placeholder="Confirm password">
+            </div>-->
+            <button type="submit" ng-click="signUp(newUser)" class="btn btn-primary btn-sm m-t-10 waves-effect">Create</button>
+        </form>
+        <div ng-show="successMessage !== ''"class="alert alert-success" style="margin-top:2%" role="alert">{{successMessage}}</div>
+        <div ng-show="errorMessage" class="alert alert-danger" style="margin-top:2%" role="alert">{{errorMessage}}</div>
+    </div>
+</div>
