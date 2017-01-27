@@ -12,7 +12,6 @@ Run 'grunt build' for building.
 
 Run 'grunt dev' serve for developpement
 
-## test accout
+## test account
 
-Login: admin
-passwd: test
+Login: admin, passwd: test
