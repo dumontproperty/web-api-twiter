@@ -2,12 +2,17 @@
 
 ## install
 
-Run `npm` install to install dependencies.
+Run 'npm install' to install dependencies.
 
 ## Build 
 
-Run `grunt build` for building.
+Run 'grunt build' for building.
 
 ## development
 
-Run `grunt dev` serve for developpement
+Run 'grunt dev' serve for developpement
+
+## test accout
+
+Login: admin
+passwd: test
