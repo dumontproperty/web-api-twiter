@@ -1,5 +1,5 @@
 var variable = {
-  IS_PRODUCTION_MODE: false, //true, false
+  IS_PRODUCTION_MODE: true, //true, false
 
   //server variable
   server: {
@@ -8,7 +8,7 @@ var variable = {
       host: "localhost"
     },
     prod :{
-      port: 80,
+      port: 8080,
       host: "localhost"
     },
     staticPaths: ["www"],

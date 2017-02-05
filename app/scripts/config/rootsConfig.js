@@ -20,7 +20,7 @@ angular.module('web-api-twitter')
             })
             .when('/profile', {
                 templateUrl: 'views/userprofile.html',
-                controller: 'ResetpasswordController',
+                controller: 'userProfileController',
                 controllerAs: 'userprofile'
             })
             .when('/resetPassword/:id/:exprationTime', {
