@@ -423,7 +423,7 @@ abstract class Phirehose
 	  if($this->conn == NULL && feof($this->conn) ||
         ($numChanged = stream_select($this->fdrPool, $fdw, $fde, $this->readTimeout)) == FALSE) {
 			print 'Pas de données correspondant à votre recherche';
-			exit;
+			return;
 		}
       while ($this->conn !== NULL && !feof($this->conn) &&
         ($numChanged = stream_select($this->fdrPool, $fdw, $fde, $this->readTimeout)) !== FALSE) {

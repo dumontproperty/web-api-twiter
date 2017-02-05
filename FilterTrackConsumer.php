@@ -31,16 +31,26 @@ class FilterTrackConsumer extends OauthPhirehose
      *       enqueued and processed asyncronously from the collection process. 
      */
     $data = json_decode($status, true);
-    if (is_array($data) && isset($data['user']['screen_name'])) {
-      print $data['user']['screen_name'] . ': ' . print($data['user']['location']) . "\n<br />";
-    }
+
+	$json_data = '';
+	if(!empty($data['user']['location'])) {
+		if(!empty($data['user']['screen_name'])) {
+			$json_data .= $data['user']['screen_name'].';';
+		} else {
+			$json_data .= ';';
+		}
+		
+		$json_data .= $data['user']['location'].';';
+
+		if(!empty($data['user']['created_at'])) {
+			$json_data .= $data['user']['created_at'];
+		}
+	}
+
+    print($json_data . "<br />");
   }
   
 }
 
 
-// Start streaming
-$sc = new FilterTrackConsumer(OAUTH_TOKEN, OAUTH_SECRET, Phirehose::METHOD_FILTER);
-$sc->setTrack(array('manger'));
-$sc->consume();
 
