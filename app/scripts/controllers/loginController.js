@@ -9,7 +9,7 @@
  */
 
 angular.module('web-api-twitter')
-        .controller('LoginController', function (tools, $rootScope, $scope, $auth, $location, dataBroker, variablesService, localStorage) {
+        .controller('LoginController', function (tools, $rootScope, $scope, $auth, $location, apiService, variablesService, localStorage) {
             $rootScope.IS_USER_LOGGED = false;
 
             var iSSendEmailRunning = false;
@@ -44,7 +44,7 @@ angular.module('web-api-twitter')
                     return $scope.errorMessage = 'Password is required !';
                 }
 
-                dataBroker.signIn(user, function (isErr, response) {
+                apiService.signIn(user, function (isErr, response) {
                     if (isErr) {
                         return $scope.errorMessage = 'Invalid email or password !';
                     }
@@ -89,7 +89,7 @@ angular.module('web-api-twitter')
 
                 iSSendEmailRunning = true;
 
-                dataBroker.sendResetPasswordEmail(user, function (isErr, responce) {
+                apiService.sendResetPasswordEmail(user, function (isErr, responce) {
 
                     if (isErr) {
                         return $scope.errorMessage = 'Error sending email !';

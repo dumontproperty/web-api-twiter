@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var modelNames = require("./modelNames").names;
+var modelNames = require("./names/model").names;
 
 var UserSchema = new mongoose.Schema({
   username: String,
@@ -43,7 +43,7 @@ var UserSchema = new mongoose.Schema({
   last_connection_date:	{ type: Date, default: Date.now },
   devices: [String],
   push: {type: Number, default: 3},
-  new_notifs_nb: {type: Number, default: 0} 
+  new_notifs_nb: {type: Number, default: 0}
 });
 
 UserSchema.methods.toJSON = function() {
@@ -68,18 +68,18 @@ UserSchema.methods.toJSON = function() {
 UserSchema.methods.exist = function (userRaw, result) {
     var isFounded = true;
     var isError = true;
-    
+
     if (userRaw.email !== undefined) {
         this.model(modelNames.INNERVIEW_USER).findOne({email: userRaw.email}, function (err, user) {
-                     
-            if (err) {               
+
+            if (err) {
                 return result(!isError, !isFounded);
             }
 
-            if (user === null) {              
+            if (user === null) {
                 return result(!isError, !isFounded);
             }
-                       
+
             return result(!isError, isFounded);
         });
 

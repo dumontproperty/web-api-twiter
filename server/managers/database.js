@@ -1,35 +1,35 @@
 var mongoose = require("mongoose");
 
-//all  mongoose models including their schema
-var elementModels = require("./elementModels");
+var modelNames = require("../models/names/model").names;
+
+//mongoose modelManager
+var modelManager = require("./models");
 
 //passwor encryption manager
-var passwordManager = require("./passwordManager");
+var passwordManager = require("./password");
 
-//all the model names
-var modelNames = require("./models/modelNames").names;
-
-var databaseConfig = require("./config").database.getConfig();
-
+var databaseConfig = require("../config/variable").database.getConfig();
 
 //connecting to the mongo db
 const databaseURL = "mongodb://" + databaseConfig.host + ":" + databaseConfig.port + "/" + databaseConfig.name;
+
 mongoose.connect(databaseURL);
 
 var db = mongoose.connection;
+
 db.on("error", function(){
   console.error("error to connect to "+ databaseConfig.name + " datadase");
 });
+
 db.once("open", function () {
     console.log("connected to "+databaseConfig.name);
 });
 
-
-//this object manage the CRUD request of all tadabase elements
+//database elements requests
 var databaseManager = {
     //create an element
     createElement: function (element, modelName, result) {
-        var elementModel = elementModels.getModel(modelName);
+        var elementModel = modelManager.getModel(modelName);
 
         if (elementModel !== null) {
             var elementDocument = new elementModel(element);
@@ -78,7 +78,7 @@ var databaseManager = {
     },
     //find an element
     findElements: function (modelName, result) {
-        var elementModel = elementModels.getModel(modelName);
+        var elementModel = modelManager.getModel(modelName);
         if (elementModel !== null) {
             elementModel.find(function (err, elements) {
                 if (err)
@@ -92,7 +92,7 @@ var databaseManager = {
     },
     //update an element
     updateElement: function (element, result) {
-        var elementModel = elementModels.getModel(element.elementModel);
+        var elementModel = modelManager.getModel(element.elementModel);
         if (elementModel !== null) {
             var elementDocument = new elementModel(element);
             elementDocument.updateElement(element, result);
@@ -103,7 +103,7 @@ var databaseManager = {
     },
     //remove an element
     removeElement: function (element, result) {
-        var elementModel = elementModels.getModel(element.elementModel);
+        var elementModel = modelManager.getModel(element.elementModel);
         if (elementModel !== null) {
             elementModel.findOneAndRemove({nom: element.nom}, function (err, element) {
                 if (err)
@@ -118,7 +118,7 @@ var databaseManager = {
     //search an element by it"s name
     searchElement: function (_elementModel, _nom, result) {
         var nom = "/^" + _nom + "/";
-        var elementModel = elementModels.getModel(_elementModel);
+        var elementModel = modelManager.getModel(_elementModel);
         if (elementModel !== null) {
             elementModel.find({nom: {$in: [_nom]}}, function (err, elements) {
                 console.log("elements = " + JSON.stringify(elements));
@@ -134,7 +134,7 @@ var databaseManager = {
     //check user account
     checkUserAccount: function (userRaw, result) {
         var invalidUser = true;
-        var elementModel = elementModels.getModel(modelNames.INNERVIEW_USER);
+        var elementModel = modelManager.getModel(modelNames.INNERVIEW_USER);
         if (elementModel !== null && userRaw.email !== undefined) {
             var elementDocument = new elementModel(userRaw);
             elementDocument.exist(userRaw, function (err, isElementExist, user) {
@@ -165,7 +165,7 @@ var databaseManager = {
     //findOne element
     findElementById: function (element, result) {
         var isError = true;
-        var elementModel = elementModels.getModel(element.elementModel);
+        var elementModel = modelManager.getModel(element.elementModel);
         if (elementModel !== null) {
             elementModel.findOne({_id: element._id}, function (err, element) {
                 if (err)

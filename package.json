@@ -44,7 +44,8 @@
     "add-module": "npm install --save",
     "remove-module": "npm uninstall --save",
     "launch-app": "start mongod.exe --dbpath \"C:/Program Files/MongoDB/data\" && start node server/index.js && start grunt build",
-    "app-dev": "start mongod.exe --dbpath \"C:/Program Files/MongoDB/data\" && start node server/index.js && start grunt dev"
+    "app-dev": "start mongod.exe --dbpath \"C:/Program Files/MongoDB/data\" && start node server/index.js && start grunt dev",
+    "server": "node server/index.js"
   },
   "paths": {
     "dev": {

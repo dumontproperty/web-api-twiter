@@ -1,18 +1,18 @@
 var nodemailer = require("nodemailer");
 
-var config = require("./config");
-
 var moment = require("moment");
+
+var variableConfig = require("../config/variable");
 
 var failSendEmail = true;
 
-var baseURL = config.mailSender.getBaseURL();
+var baseURL = variableConfig.mailSender.getBaseURL();
 
 //email to replay whitch will be visible from the recipiant
 var mailSender = "miguel.dumont.devoption@gmail.com";
 
-//Mail configuration
-var smtpConfig = config.mailSender.smtpConfig;
+//Mail variableConfiguration
+var smtpConfig = variableConfig.mailSender.smtpConfig;
 
 //create reusable transporter object using the default SMTP transport
 var transporter = nodemailer.createTransport(smtpConfig);

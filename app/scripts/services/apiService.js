@@ -2,13 +2,13 @@
 
 /**
  * @ngdoc service
- * @name .dataBroker
+ * @name .apiService
  * @description
- * # dataBroker
+ * # apiService
  * this service manage all call request to the back-end server.
  */
 angular.module('web-api-twitter')
-        .service('dataBroker', function ($http, variablesService, $auth) {
+        .service('apiService', function ($http, variablesService, $auth) {
 
             $http.defaults.headers.post = {'Content-Type': 'application/json'};
 

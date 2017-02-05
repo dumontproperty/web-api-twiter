@@ -1,31 +1,31 @@
-var mailSender = require("./mailSender");
-
-//passwor encryption manager
-var passwordManager = require("./passwordManager");
-
-var databaseManager = require("./databaseManager");
-
-var elementModels = require("./elementModels");
-
-var modelNames = require("./models/modelNames").names;
-
 var jwt = require("jwt-simple");
 
 var moment = require("moment");
 
-var config = require("./config");
+var mailManager = require("./mail");
 
-var TOKEN_SECRET = config.JWT.secretWord;
+//passwor encryption manager
+var passwordManager = require("./password");
+
+var databaseManager = require("./database");
+
+var modelsManager = require("./models");
+
+var modelNames = require("../models/names/model").names;
+
+var variableConfig = require("../config/variable");
+
+var TOKEN_SECRET = variableConfig.JWT.secretWord;
 
 var REQUEST_SUCCESS = "1";
 
 var REQUEST_ERROR = "0";
 
-
 exports.findElementById = databaseManager.findElementById;
 
+//server rootes
 exports.init = function (app) {
-    
+
     //find a element
     app.get("/getElement/:modelName/:id", function (req, res) {
         var errorGettingElement = true;
@@ -115,7 +115,7 @@ exports.init = function (app) {
                 console.log("ERROR: " + msg);
                 return sendResponce(failToConnect, msg, res);
             }
-            
+
             //the token attribute need to exist for the success autentication with satellizer module in the client side
             console.log("SUCCESS: " + "autentication successful");
             var responce = {
@@ -123,7 +123,7 @@ exports.init = function (app) {
                 status: REQUEST_SUCCESS,
                 message: "autentication successful"
             };
-            
+
             return res.status(200).send(JSON.stringify(responce));
         });
     });
@@ -133,7 +133,7 @@ exports.init = function (app) {
         var failedToSignUp = true;
         var newUserAccount = req.body;
         var clearPassword = newUserAccount.password;
-        // hash the passwor and put email in lowerCase          
+        // hash the passwor and put email in lowerCase
         passwordManager.cryptPassword(newUserAccount.password, function (err, hash) {
             if (err || !hash) {
                 return sendResponce(failedToSignUp, "error hash password", res);
@@ -148,7 +148,7 @@ exports.init = function (app) {
                 }
                 user.clearPassword = clearPassword;
                 //send the welcome email to the new innership user
-                mailSender.welcomeEmail(user, function (isErr, message) {
+                mail.welcomeEmail(user, function (isErr, message) {
                     if (isErr) {
                         return console.log("ERROR: sending welcome email");
                     }
@@ -164,7 +164,7 @@ exports.init = function (app) {
     app.post("/changePassword", function (req, res) {
         var userPassword = req.body;
         var failChangePassword = true;
-        var elementModel = elementModels.getModel(modelNames.INNERVIEW_USER);
+        var elementModel = modelsManager.getModel(modelNames.INNERVIEW_USER);
         var elementDocument = new elementModel(userPassword);
 
         elementDocument.exist(userPassword, function (err, isElementExist, user) {
@@ -176,7 +176,7 @@ exports.init = function (app) {
                 return sendResponce(failChangePassword, "user not exist", res);
             }
 
-            // hash the hold passwor       
+            // hash the hold passwor
             passwordManager.cryptPassword(userPassword.holdPassword, function (err, hodPasswordHash) {
                 if (err || !hodPasswordHash) {
                     return sendResponce(failChangePassword, "error hash hold password", res);
@@ -186,7 +186,7 @@ exports.init = function (app) {
                     return sendResponce(failChangePassword, "invalid hold password", res);
                 }
 
-                // hash the new passwor       
+                // hash the new passwor
                 passwordManager.cryptPassword(userPassword.newPassword, function (err, newPasswordHash) {
                     if (err || !newPasswordHash) {
                         return sendResponce(failChangePassword, "error hash new password", res);
@@ -217,7 +217,7 @@ exports.init = function (app) {
                 return sendResponce(failResetPassword, "user not exist", res);
             }
 
-            // hash the new password       
+            // hash the new password
             passwordManager.cryptPassword(userPassword.newPassword, function (err, newPasswordHash) {
                 if (err || !newPasswordHash) {
                     return sendResponce(failResetPassword, "error hash new password", res);
@@ -236,7 +236,7 @@ exports.init = function (app) {
         var userRaw = req.body;
         var failSendResetEmail = true;
 
-        var elementModel = elementModels.getModel(modelNames.INNERVIEW_USER);
+        var elementModel = modelsManager.getModel(modelNames.INNERVIEW_USER);
         var elementDocument = new elementModel(userRaw);
 
         elementDocument.exist(userRaw, function (err, isElementExist, user) {
@@ -248,7 +248,7 @@ exports.init = function (app) {
                 return sendResponce(failSendResetEmail, "user not exist", res);
             }
             //send the reset password email
-            mailSender.resetPasswordEmail(user, function (isErr, message) {
+            mailManager.resetPasswordEmail(user, function (isErr, message) {
                 if (isErr) {
                     return sendResponce(failSendResetEmail, "error sending password reset email", res);
                 }
@@ -291,10 +291,3 @@ function sendResponce(isErr, message, res) {
 
     return res.status(200).send(JSON.stringify(responce));
 }
-
-
-
-
-
-
-

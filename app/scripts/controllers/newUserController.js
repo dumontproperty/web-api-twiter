@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('web-api-twitter')
-        .controller('NewUserController', function ($scope, dataBroker, variablesService, tools) {
+        .controller('NewUserController', function ($scope, apiService, variablesService, tools) {
             var userRoles = variablesService.userRoles;
             $scope.userRoles = userRoles.getRoles();
 
@@ -10,7 +10,7 @@ angular.module('web-api-twitter')
                 if (checkUser(newUser)) {
                     var a = 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890';
                     newUser.password = genPassword(8,a);
-                    dataBroker.signUp(newUser, function (isErr, responce) {
+                    apiService.signUp(newUser, function (isErr, responce) {
                         console.log('responce  = ' + JSON.stringify(responce));
                         if (isErr) {
 

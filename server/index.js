@@ -2,21 +2,23 @@ var express = require("express");
 
 var bodyParser = require("body-parser");
 
-var roots = require("./roots");
-
-var config = require("./config");
-
 var jwt = require("jwt-simple");
 
-var databaseManager = require("./databaseManager");
+var variableConfig = require("./config/variable");
+
+var rooteManager = require("./managers/roote");
+
+var databaseManager = require("./managers/database");
+
+var passwordManager = require("./managers/password");
+
+var serverConfig = variableConfig.server.getConfig();
+
+var allowOriginPort = (!variableConfig.IS_PRODUCTION_MODE) ? 9000 : serverConfig.port;
 
 var app = express();
 
-var passwordManager = require("./passwordManager");
-
 //express configuration
-var serverConfig = config.server.getConfig();
-
 app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -25,10 +27,7 @@ app.use(require("cookie-parser")());
 
 app.use(require("body-parser").urlencoded({extended: true}));
 
-app.use(require("express-session")({secret: "keyboard cat", resave: true, saveUninitialized: true}));
-
-var allowOriginPort = serverConfig.port;
-
+//app.use(require("express-session")({secret: "keyboard cat", resave: true, saveUninitialized: true}));
 
 //check if user allowed to access the server routes
 app.use(function (req, res, next) {
@@ -38,14 +37,16 @@ app.use(function (req, res, next) {
     //get the user JWT
     var userJWT = req.get("Authorization");
 
+    return next();
+
     //enable this route for user authentication
     if (URLPath === "/auth/login" || userJWT === undefined) {
-        return   next();
+        return next();
     }
 
     var token = JSON.parse(userJWT).token;
 
-    var userInfo = jwt.decode(token, config.JWT.secretWord);
+    var userInfo = jwt.decode(token, variableConfig.JWT.secretWord);
 
     console.log("userInfo._id = " + userInfo._id);
 
@@ -59,14 +60,9 @@ app.use(function (req, res, next) {
       });
 });
 
-if (!config.IS_PRODUCTION_MODE) {
-    //the grunt server port
-    allowOriginPort = 9000;
-}
-
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:" + allowOriginPort);
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
 
     // Request methods you wish to allow
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, PATCH, DELETE");
@@ -120,4 +116,4 @@ passwordManager.cryptPassword(user.password, function (err, hash) {
 
 
 //init the webservices routes
-roots.init(app);
+rooteManager.init(app);
