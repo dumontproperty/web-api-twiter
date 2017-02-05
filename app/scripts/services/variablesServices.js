@@ -4,7 +4,7 @@
  * @name .variablesService
  * @description
  * # variablesService
- * Service in the .
+ * Service in the.
  */
 
 angular.module('web-api-twitter')

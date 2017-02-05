@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var modelNames = require("./modelNames").names;
+var modelNames = require("./names/model").names;
 
 var InnerviewUserSchema = new mongoose.Schema({
     name: String,
@@ -25,18 +25,13 @@ var InnerviewUserSchema = new mongoose.Schema({
 InnerviewUserSchema.methods.exist = function (userRaw, result) {
     var isFounded = true;
     var isError = true;
-    
+
     if (userRaw.email !== undefined) {
         this.model(modelNames.INNERVIEW_USER).findOne({email: userRaw.email}, function (err, user) {
-                     
-            if (err) {               
-                return result(!isError, !isFounded);
-            }
+            if (err) return result(!isError, !isFounded);
 
-            if (user === null) {              
-                return result(!isError, !isFounded);
-            }
-                       
+            if (user === null) return result(!isError, !isFounded);
+
             return result(!isError, isFounded, user);
         });
 

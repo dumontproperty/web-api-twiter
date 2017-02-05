@@ -8,7 +8,7 @@
  * Controller of the
  */
 angular.module('web-api-twitter')
-        .controller('ResetpasswordController', function ($scope, $rootScope, dataBroker, $routeParams, $location, $auth) {
+        .controller('ResetpasswordController', function ($scope, $rootScope, apiService, $routeParams, $location, $auth) {
             //make sure no users connected while password reseting
             $auth.logout();
             $rootScope.IS_USER_LOGGED = false;
@@ -35,7 +35,7 @@ angular.module('web-api-twitter')
 
             $scope.reset = function (userPassword) {
                 if ((userPassword.newPassword !== '') && (userPassword.newPassword === userPassword.confirmPassword)) {
-                    dataBroker.resetUserPasswordEmail(userPassword, function (isErr, responce) {
+                    apiService.resetUserPasswordEmail(userPassword, function (isErr, responce) {
                         if (isErr) {
                             $scope.logError = true;
                             return $scope.logMessage = 'error reset password';

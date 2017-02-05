@@ -19,7 +19,7 @@ angular.module('web-api-twitter')
         $authProvider.tokenName = 'token';
         $authProvider.tokenPrefix = 'satellizer';
         $authProvider.authHeader = 'Authorization';
-        $authProvider.authToken = '';
+        //$authProvider.authToken = '';
         $authProvider.storageType = 'localStorage';
 
     })

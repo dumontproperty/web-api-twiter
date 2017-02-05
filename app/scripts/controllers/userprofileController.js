@@ -8,7 +8,7 @@
  * Controller of the
  */
 angular.module('web-api-twitter')
-        .controller('ResetpasswordController', function ($scope, dataBroker, $auth, variablesService) {
+        .controller('ResetpasswordController', function ($scope, apiService, $auth, variablesService) {
             var USER_INFO = variablesService.getUserInfo();
 
             $scope.navigate = function (blockName) {
@@ -29,7 +29,7 @@ angular.module('web-api-twitter')
                     $scope.errorMessage = 'New password invalid !';
                 }
 
-                dataBroker.changeUserPassword(userPasword, function (isErr, response) {
+                apiService.changeUserPassword(userPasword, function (isErr, response) {
                     if (isErr) {
                         return $scope.errorMessage = 'Old password invalid !';
                     }
@@ -65,7 +65,7 @@ angular.module('web-api-twitter')
                     name: ''
                 };
 
-                dataBroker.getUserAccount(USER_INFO, function (isErr, response) {
+                apiService.getUserAccount(USER_INFO, function (isErr, response) {
                     console.log(JSON.stringify(response));
                     if (isErr) {
                         return $scope.errorMessage = 'Error getting user informations !';

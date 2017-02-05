@@ -1,10 +1,10 @@
 var mongoose = require("mongoose");
-var modelNames = require("./models/modelNames").names;
+var modelNames = require("../models/names/model").names;
 
 
 //innerview models
-var userModel  = require("./models/User");
-var innerviewUserModel  = require("./models/innerviewUser");
+var userModel  = require("../models/user");
+var innerviewUserModel  = require("../models/innerviewUser");
 
 
 exports.getModel = function (modelName) {
@@ -16,8 +16,6 @@ exports.getModel = function (modelName) {
       }else if(modelNames.INNERVIEW_USER){
           return  innerviewUserModel;
       }
-      
+
     return  mongoose.model(modelName);
 };
-
-
