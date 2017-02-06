@@ -16,7 +16,7 @@ angular.module('web-api-twitter')
 
             var modelNames = variablesService.modelNames;
 
-            var baseURL = 'http://' + serverConfig.host + ':' + serverConfig.port;
+            var baseURL = '//' + serverConfig.host + ':' + serverConfig.port;
 
             var isError = true;
 
