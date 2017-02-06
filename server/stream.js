@@ -2,7 +2,8 @@
 //  Bot
 //  class for performing various twitter actions
 //
-var Twit = require('../lib/twitter');
+var Twit = require('../node_modules/twit');
+require('managers/database.js');
 //
 // I only want to see tweets about my favorite fruits
 //
@@ -14,18 +15,6 @@ var T = new Twit({
     , access_token_secret:  'dlBJCEytVBibXJKvqh0W6Jq1EbVvgsxbiuJOFV8uwAUD4'
 });
 
-/*function dump(obj) {
-    var out = '';
-    for (var i in obj) {
-        out += i + ": " + obj[i] + "\n";
-    }
-    alert(out);
-    // or, if you wanted to avoid alerts...
-    var pre = document.createElement('pre');
-    pre.innerHTML = out;
-    document.body.appendChild(pre)
-}*/
-
 // same result as doing { track: 'bananas,oranges,strawberries' }
 var stream = T.stream('statuses/filter', { track: ['bananas', 'oranges', 'strawberries'] })
 
@@ -33,7 +22,6 @@ stream.on('tweet', function (tweet) {
     console.log(tweet["user"]["screen_name"]);
     console.log(tweet["user"]["location"]);
     console.log(tweet["created_at"]);
-    //dump(tweet);
 });
 
 

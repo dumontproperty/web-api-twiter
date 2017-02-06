@@ -256,6 +256,21 @@ exports.init = function (app) {
             });
         });
     });
+	
+	//stream tweet from twitter
+	app.post("/stream/:modelName", function(req, res){
+		var modelName = req.params.modelName;
+        var addedElements = [];
+        var index = 0;
+        var errorCreatingElements = true;
+
+        databaseManager.createElements(index, req.body, modelName, addedElements, function (isErr, msg, elements) {
+            if (isErr) {
+                return sendResponce(errorCreatingElements, msg, res);
+            }
+            return sendResponce(!errorCreatingElements, elements, res);
+        });
+	});
 };
 
 
