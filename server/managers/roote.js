@@ -28,6 +28,10 @@ exports.findElementById = databaseManager.findElementById;
 //server rootes
 exports.init = function(app) {
 
+  app.get('/', function (req, res) {
+      res.render('index', {});
+  });
+
     //find a element
     app.get("/getElement/:modelName/:id", function(req, res) {
         var errorGettingElement = true;
