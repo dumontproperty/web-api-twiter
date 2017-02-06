@@ -1,0 +1,12 @@
+body { font-size: 13px; line-height: 1.42857143; color: #5E5E5E; background-color: #edecec; }
+
+.login-page { padding: 0px !important; }
+.login-page #content { padding: 0px; }
+
+div.alert.alert-danger, div.alert.alert-success { text-align: center; margin-top: 2%; }
+
+#profile-main .pm-body { padding-left: 0px; }
+
+.card.reset-password { margin-top: 5%; }
+
+.card .card-body { padding: 18px; }

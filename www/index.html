@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>web-api-twitter</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <base href="/">
+        
+         <link type="text/css" href="css/app.css" rel="stylesheet">
+         
+         <link type="text/css" href="css/lib/lib/animate/animate.min.css" rel="stylesheet">
+         
+         <link type="text/css" href="css/lib/lib/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+         
+         <link type="text/css" href="css/lib/lib/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+         
+         <link type="text/css" href="css/lib/lib/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+         
+         <link type="text/css" href="css/lib/lib/materialAdmin/css/materialAdmin.css" rel="stylesheet">
+         
+         <link type="text/css" href="css/lib/lib/sweetalert/dist/sweetalert.css" rel="stylesheet">
+         
+    </head>
+
+    <body ng-app="web-api-twitter">
+        <!--navbar-->
+        <div  ng-if="IS_USER_LOGGED" ng-include="'views/navbar.html'" ></div>
+        <!--main content-->
+        <section id="main" ng-class="{'login-page' : !IS_USER_LOGGED}" >
+            <div ng-if="IS_USER_LOGGED" ng-include="'views/menu.html'" ></div>
+            <section id="content" ng-view="">
+            </section>
+        </section>
+
+        <!--footer-->
+        <div ng-if="IS_USER_LOGGED" ng-include="'views/footer.html'" ></div>
+        
+            <script type="text/javascript" src="scripts/1_lib.js"></script>
+        
+            <script type="text/javascript" src="scripts/2_templates.js"></script>
+        
+            <script type="text/javascript" src="scripts/3_app.js"></script>
+        
+    </body>
+</html>
