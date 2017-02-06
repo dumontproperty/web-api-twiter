@@ -48,14 +48,14 @@ var variable = {
   },
   //the atabase variable
   database: {
-    name: "innershipview",
+    name: "web-api-twitter",
     dev:{
       host:"localhost",
       port:"27017"
     },
     prod:{
-      host:"localhost",
-      port: "27017"
+      host:"ds141209.mlab.com",
+      port: "41209"
     },
     getConfig: function() {
       var _variable = {
