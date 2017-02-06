@@ -8,11 +8,12 @@ var modelManager = require("./models");
 //passwor encryption manager
 var passwordManager = require("./password");
 
+var variableConfig = require("../config/variable");
+
 var databaseConfig = require("../config/variable").database.getConfig();
 
 //connecting to the mongo db
-const databaseURL = "mongodb://" + databaseConfig.host + ":" + databaseConfig.port + "/" + databaseConfig.name;
-
+const databaseURL = ((variableConfig.IS_PRODUCTION_MODE) ? "mongodb://admin:twitter" : "mongodb://") + databaseConfig.host + ":" + databaseConfig.port + "/" + databaseConfig.name;
 mongoose.connect(databaseURL);
 
 var db = mongoose.connection;

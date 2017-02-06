@@ -3,8 +3,9 @@ var modelNames = require("../models/names/model").names;
 
 
 //innerview models
-var userModel  = require("../models/user");
+var userModel  = require("../models/users");
 var innerviewUserModel  = require("../models/innerviewUser");
+var twitModel  = require("../models/twit");
 
 
 exports.getModel = function (modelName) {
@@ -13,9 +14,12 @@ exports.getModel = function (modelName) {
      }
       if(modelName === modelNames.USER){
           return userModel;
-      }else if(modelNames.INNERVIEW_USER){
+      }else if(modelName === modelNames.INNERVIEW_USER){
           return  innerviewUserModel;
+      }else if(modelName === modelNames.TWIT){
+          return  twitModel;
       }
+
 
     return  mongoose.model(modelName);
 };

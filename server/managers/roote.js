@@ -11,6 +11,8 @@ var databaseManager = require("./database");
 
 var modelsManager = require("./models");
 
+var streamManager = require("./stream");
+
 var modelNames = require("../models/names/model").names;
 
 var variableConfig = require("../config/variable");
@@ -24,10 +26,10 @@ var REQUEST_ERROR = "0";
 exports.findElementById = databaseManager.findElementById;
 
 //server rootes
-exports.init = function (app) {
+exports.init = function(app) {
 
     //find a element
-    app.get("/getElement/:modelName/:id", function (req, res) {
+    app.get("/getElement/:modelName/:id", function(req, res) {
         var errorGettingElement = true;
 
         var element = {
@@ -35,7 +37,7 @@ exports.init = function (app) {
             modelName: req.params.modelName
         };
 
-        databaseManager.findElementById(element, function (err, element) {
+        databaseManager.findElementById(element, function(err, element) {
             if (err) {
                 return sendResponce(errorGettingElement, "error finding element", res);
             }
@@ -45,10 +47,10 @@ exports.init = function (app) {
 
 
     //find all elements
-    app.get("/getElements/:modelName", function (req, res) {
+    app.get("/getElements/:modelName", function(req, res) {
         var errorGettingElements = true;
         var modelName = req.params.modelName;
-        databaseManager.findElements(modelName, function (isErr, msg, elements) {
+        databaseManager.findElements(modelName, function(isErr, msg, elements) {
             if (isErr) {
                 return sendResponce(errorGettingElements, msg, res);
             }
@@ -57,10 +59,10 @@ exports.init = function (app) {
     });
 
     //create an element
-    app.post("/createElement/:modelName", function (req, res) {
+    app.post("/createElement/:modelName", function(req, res) {
         var errorCreateElement = true;
         var modelName = req.params.modelName;
-        databaseManager.createElement(req.body, modelName, function (isErr, msg, element) {
+        databaseManager.createElement(req.body, modelName, function(isErr, msg, element) {
             if (isErr) {
                 return sendResponce(errorCreateElement, msg, res);
             }
@@ -69,13 +71,13 @@ exports.init = function (app) {
     });
 
     //create several elements
-    app.post("/createElements/:modelName", function (req, res) {
+    app.post("/createElements/:modelName", function(req, res) {
         var modelName = req.params.modelName;
         var addedElements = [];
         var index = 0;
         var errorCreatingElements = true;
 
-        databaseManager.createElements(index, req.body, modelName, addedElements, function (isErr, msg, elements) {
+        databaseManager.createElements(index, req.body, modelName, addedElements, function(isErr, msg, elements) {
             if (isErr) {
                 return sendResponce(errorCreatingElements, msg, res);
             }
@@ -84,9 +86,9 @@ exports.init = function (app) {
     });
 
     //update an element
-    app.post("/updateElement", function (req, res) {
+    app.post("/updateElement", function(req, res) {
         var errorUpdatingElement = true;
-        databaseManager.updateElement(req.body, function (isErr, msg, element) {
+        databaseManager.updateElement(req.body, function(isErr, msg, element) {
             if (isErr) {
                 return sendResponce(errorUpdatingElement, msg, res);
             }
@@ -95,9 +97,9 @@ exports.init = function (app) {
     });
 
     //delete an elements
-    app.post("/deleteElement", function (req, res) {
+    app.post("/deleteElement", function(req, res) {
         var errorDeletingElement = true;
-        databaseManager.removeElement(req.body, function (isErr, msg, element) {
+        databaseManager.removeElement(req.body, function(isErr, msg, element) {
             if (isErr) {
                 return sendResponce(errorDeletingElement, msg, res);
             }
@@ -108,9 +110,9 @@ exports.init = function (app) {
 
 
     //authanticate a innerview user
-    app.post("/auth/login", function (req, res) {
+    app.post("/auth/login", function(req, res) {
         var failToConnect = true;
-        databaseManager.checkUserAccount(req.body, function (err, msg, userAccount) {
+        databaseManager.checkUserAccount(req.body, function(err, msg, userAccount) {
             if (err) {
                 console.log("ERROR: " + msg);
                 return sendResponce(failToConnect, msg, res);
@@ -129,12 +131,12 @@ exports.init = function (app) {
     });
 
     //create a new user account
-    app.post("/auth/signup", function (req, res) {
+    app.post("/auth/signup", function(req, res) {
         var failedToSignUp = true;
         var newUserAccount = req.body;
         var clearPassword = newUserAccount.password;
         // hash the passwor and put email in lowerCase
-        passwordManager.cryptPassword(newUserAccount.password, function (err, hash) {
+        passwordManager.cryptPassword(newUserAccount.password, function(err, hash) {
             if (err || !hash) {
                 return sendResponce(failedToSignUp, "error hash password", res);
             }
@@ -142,13 +144,13 @@ exports.init = function (app) {
             newUserAccount.password = hash;
             newUserAccount.email = newUserAccount.email.toLowerCase();
 
-            databaseManager.createElement(newUserAccount, modelNames.INNERVIEW_USER, function (isErr, msg, user) {
+            databaseManager.createElement(newUserAccount, modelNames.INNERVIEW_USER, function(isErr, msg, user) {
                 if (isErr) {
                     return sendResponce(failedToSignUp, msg, res);
                 }
                 user.clearPassword = clearPassword;
                 //send the welcome email to the new innership user
-                mail.welcomeEmail(user, function (isErr, message) {
+                mail.welcomeEmail(user, function(isErr, message) {
                     if (isErr) {
                         return console.log("ERROR: sending welcome email");
                     }
@@ -161,13 +163,13 @@ exports.init = function (app) {
     });
 
     //change the user password
-    app.post("/changePassword", function (req, res) {
+    app.post("/changePassword", function(req, res) {
         var userPassword = req.body;
         var failChangePassword = true;
         var elementModel = modelsManager.getModel(modelNames.INNERVIEW_USER);
         var elementDocument = new elementModel(userPassword);
 
-        elementDocument.exist(userPassword, function (err, isElementExist, user) {
+        elementDocument.exist(userPassword, function(err, isElementExist, user) {
             if (err) {
                 return sendResponce(failChangePassword, "error searching user", res);
             }
@@ -177,7 +179,7 @@ exports.init = function (app) {
             }
 
             // hash the hold passwor
-            passwordManager.cryptPassword(userPassword.holdPassword, function (err, hodPasswordHash) {
+            passwordManager.cryptPassword(userPassword.holdPassword, function(err, hodPasswordHash) {
                 if (err || !hodPasswordHash) {
                     return sendResponce(failChangePassword, "error hash hold password", res);
                 }
@@ -187,7 +189,7 @@ exports.init = function (app) {
                 }
 
                 // hash the new passwor
-                passwordManager.cryptPassword(userPassword.newPassword, function (err, newPasswordHash) {
+                passwordManager.cryptPassword(userPassword.newPassword, function(err, newPasswordHash) {
                     if (err || !newPasswordHash) {
                         return sendResponce(failChangePassword, "error hash new password", res);
                     }
@@ -202,12 +204,12 @@ exports.init = function (app) {
     });
 
     //reset the user password
-    app.post("/resetPassword", function (req, res) {
+    app.post("/resetPassword", function(req, res) {
         var failResetPassword = true;
         var userPassword = req.body;
         userPassword.elementModel = modelNames.INNERVIEW_USER;
 
-        databaseManager.findElementById(userPassword, function (err, user) {
+        databaseManager.findElementById(userPassword, function(err, user) {
 
             if (err) {
                 return sendResponce(failResetPassword, "error finding user", res);
@@ -218,7 +220,7 @@ exports.init = function (app) {
             }
 
             // hash the new password
-            passwordManager.cryptPassword(userPassword.newPassword, function (err, newPasswordHash) {
+            passwordManager.cryptPassword(userPassword.newPassword, function(err, newPasswordHash) {
                 if (err || !newPasswordHash) {
                     return sendResponce(failResetPassword, "error hash new password", res);
                 }
@@ -232,14 +234,14 @@ exports.init = function (app) {
     });
 
     //send the reset email to the user
-    app.post("/sendResetEmail", function (req, res) {
+    app.post("/sendResetEmail", function(req, res) {
         var userRaw = req.body;
         var failSendResetEmail = true;
 
         var elementModel = modelsManager.getModel(modelNames.INNERVIEW_USER);
         var elementDocument = new elementModel(userRaw);
 
-        elementDocument.exist(userRaw, function (err, isElementExist, user) {
+        elementDocument.exist(userRaw, function(err, isElementExist, user) {
             if (err) {
                 return sendResponce(failSendResetEmail, "error finding user", res);
             }
@@ -248,7 +250,7 @@ exports.init = function (app) {
                 return sendResponce(failSendResetEmail, "user not exist", res);
             }
             //send the reset password email
-            mailManager.resetPasswordEmail(user, function (isErr, message) {
+            mailManager.resetPasswordEmail(user, function(isErr, message) {
                 if (isErr) {
                     return sendResponce(failSendResetEmail, "error sending password reset email", res);
                 }
@@ -256,21 +258,35 @@ exports.init = function (app) {
             });
         });
     });
-	
-	//stream tweet from twitter
-	app.post("/stream/:modelName", function(req, res){
-		var modelName = req.params.modelName;
-        var addedElements = [];
-        var index = 0;
-        var errorCreatingElements = true;
 
-        databaseManager.createElements(index, req.body, modelName, addedElements, function (isErr, msg, elements) {
-            if (isErr) {
-                return sendResponce(errorCreatingElements, msg, res);
-            }
-            return sendResponce(!errorCreatingElements, elements, res);
+
+    app.post("/startStream", function(req, res) {
+        var names = req.body;
+
+        streamManager.start(names, function(tweet) {
+          console.info("tweet", tweet);
+
+            databaseManager.createElement({
+              screenName: tweet["user"]["screen_name"],
+              location: tweet["user"]["location"],
+              createdAt: tweet["created_at"]
+            }, modelNames.TWIT, function(isErr, msg, element) {
+                if (isErr) {
+                    return console.log("Error add twit", msg);
+                }
+
+                return console.log("twit added");
+            });        
         });
-	});
+
+          return sendResponce(false, "stream started", res);
+    });
+
+
+    app.post("/stopStream", function(req, res) {
+        streamManager.stop();
+        return sendResponce(false, "stream Stopped", res);
+    });
 };
 
 
@@ -283,7 +299,7 @@ function createJWT(user) {
         email: user.email,
         role: user.role,
         iat: moment().unix(),
-        exp: moment().add(validityPeriod , timeIndicator).unix()
+        exp: moment().add(validityPeriod, timeIndicator).unix()
     };
     return jwt.encode(payload, TOKEN_SECRET);
 }

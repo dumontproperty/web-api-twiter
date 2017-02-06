@@ -1,5 +1,6 @@
 //elements model names
 exports.names = {
     USER: "User",
-    INNERVIEW_USER: "InnerviewUser"
+    INNERVIEW_USER: "InnerviewUser",
+    TWIT: "Twit"
 };

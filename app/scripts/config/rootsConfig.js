@@ -1,7 +1,6 @@
 angular.module('web-api-twitter')
     .config(function($routeProvider, $locationProvider) {
       $locationProvider.html5Mode(true);
-      //$locationProvider.hashPrefix('');
         $routeProvider
             .when('/home', {
                 templateUrl: 'views/home.html',
@@ -20,7 +19,7 @@ angular.module('web-api-twitter')
             })
             .when('/profile', {
                 templateUrl: 'views/userprofile.html',
-                controller: 'ResetpasswordController',
+                controller: 'userProfileController',
                 controllerAs: 'userprofile'
             })
             .when('/resetPassword/:id/:exprationTime', {

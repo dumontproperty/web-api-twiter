@@ -108,4 +108,14 @@ angular.module('web-api-twitter')
                         });
             };
 
+
+
+            this.startStream = function (names) {
+                return $http.post(baseURL + '/startStream', names);
+            };
+
+
+            this.stopStream = function () {
+                return $http.get(baseURL + '/stopStream');
+            };
         });
