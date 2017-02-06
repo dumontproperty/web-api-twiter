@@ -1,4 +1,4 @@
-var variable = {
+ var variable = {
   IS_PRODUCTION_MODE: true, //true, false
 
   //server variable

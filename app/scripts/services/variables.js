@@ -19,7 +19,7 @@ angular.module('web-api-twitter')
                 },
                 host: {
                     dev: 'localhost',
-                    prod: 'localhost'
+                    prod: 'twittergeoloc.appspot.com'
                 },
                 getServerConfig: function () {
                     if (PRODUCTION_MODE) {
