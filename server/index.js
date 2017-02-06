@@ -60,6 +60,7 @@ app.use(function (req, res, next) {
       });
 });
 
+
 app.use(function (req, res, next) {
     // Website you wish to allow to connect
     res.setHeader("Access-Control-Allow-Origin", "http://localhost:9000");
@@ -75,12 +76,10 @@ app.use(function (req, res, next) {
     next();
 });
 
+
 serverConfig.staticPaths.forEach(function(staticPath){
   app.use(express.static(staticPath));
 });
-
-app.use("/bower_components", express.static("bower_components"));
-app.use("/app/styles", express.static("./app/styles"));
 
 
 //set the port to litening

@@ -3,7 +3,7 @@ var modelNames = require("../models/names/model").names;
 
 
 //innerview models
-var userModel  = require("../models/user");
+var userModel  = require("../models/users");
 var innerviewUserModel  = require("../models/innerviewUser");
 
 

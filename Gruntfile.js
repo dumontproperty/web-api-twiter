@@ -1,20 +1,3 @@
-Skip to content
-This repository
-Search
-Pull requests
-Issues
-Gist
- @rmarcou
- Unwatch 1
-  Star 0
- Fork 0 dumontproperty/web-api-twiter
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Pulse  Graphs
-Branch: master Find file Copy pathweb-api-twiter/Gruntfile.js
-74c1704  9 days ago
- miguel web api twitter (CORS error on server side to fix)
-0 contributors
-RawBlameHistory     
-242 lines (224 sloc)  7.12 KB
 "use strict"
 
 module.exports = function(grunt) {
@@ -256,5 +239,3 @@ module.exports = function(grunt) {
     grunt.registerTask("dev", ["copy", "html2js", "concat", "sass", "index", "connect:livereload", "watch"]);
     grunt.registerTask("default", ["build"]);
 };
-Contact GitHub API Training Shop Blog About
-© 2017 GitHub, Inc. Terms Privacy Security Status Help

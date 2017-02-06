@@ -9,13 +9,13 @@
 
 angular.module('web-api-twitter')
         .service('variablesService', function ($auth) {
-            var PRODUCTION_MODE = false; // true, false
+            var PRODUCTION_MODE = true; // true, false
 
             //innerview server configuration
             var server = {
                 port: {
-                    dev: 3000,
-                    prod: 80
+                    dev: 8080,
+                    prod: 8080
                 },
                 host: {
                     dev: 'localhost',

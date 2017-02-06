@@ -8,7 +8,7 @@
  * Controller of the
  */
 angular.module('web-api-twitter')
-        .controller('ResetpasswordController', function ($scope, apiService, $auth, variablesService) {
+        .controller('userProfileController', function ($scope, apiService, $auth, variablesService) {
             var USER_INFO = variablesService.getUserInfo();
 
             $scope.navigate = function (blockName) {
@@ -66,7 +66,6 @@ angular.module('web-api-twitter')
                 };
 
                 apiService.getUserAccount(USER_INFO, function (isErr, response) {
-                    console.log(JSON.stringify(response));
                     if (isErr) {
                         return $scope.errorMessage = 'Error getting user informations !';
                     }
