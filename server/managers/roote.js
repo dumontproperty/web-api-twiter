@@ -264,7 +264,6 @@ exports.init = function(app) {
         var names = req.body;
 
         streamManager.start(names, function(tweet) {
-          console.info("tweet", tweet);
 
             databaseManager.createElement({
               screenName: tweet["user"]["screen_name"],
@@ -276,14 +275,14 @@ exports.init = function(app) {
                 }
 
                 return console.log("twit added");
-            });        
+            });
         });
 
           return sendResponce(false, "stream started", res);
     });
 
 
-    app.post("/stopStream", function(req, res) {
+    app.get("/stopStream", function(req, res) {
         streamManager.stop();
         return sendResponce(false, "stream Stopped", res);
     });

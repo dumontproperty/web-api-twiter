@@ -44,7 +44,8 @@
     "remove-dev-module": "npm uninstall --save-dev",
     "add-module": "npm install --save",
     "remove-module": "npm uninstall --save",
-    "server": "node server/index.js"
+    "server": "node server/index.js",
+    "start": "node server/index.js"
   },
   "paths": {
     "dev": {
