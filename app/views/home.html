@@ -37,8 +37,11 @@
         <div class="card-body">
           <button class="btn btn-login btn-success " ng-click="startStream()"> startStream </button>
           <button class="btn btn-login btn-danger " ng-click="stopStream()"> stopStream</button>
-            <div class="chart-edge">
-                <!-- <div id="curved-line-chart" class="flot-chart "></div> -->
+          <button class="btn btn-login btn-success " ng-click="getTwit()"> show list</button>
+            <div class="mini-charts-item bgm-lightgreen" class="chart-edge" ng-repeat="twit in twits">
+                <p>screenName: {{twit.screenName}}<br>
+                location: {{twit.location}}</p>
+
 
             </div>
         </div>

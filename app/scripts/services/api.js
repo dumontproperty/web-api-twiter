@@ -118,4 +118,8 @@ angular.module('web-api-twitter')
             this.stopStream = function () {
                 return $http.get(baseURL + '/stopStream');
             };
+
+            this.getTwit = function(){
+              return $http.get(baseURL + '/getElements/' + modelNames.TWIT);
+            };
         });

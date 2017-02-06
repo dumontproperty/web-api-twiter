@@ -40,7 +40,8 @@ angular.module('web-api-twitter')
             //element model name
             this.modelNames = {
                 USER: 'User',
-                INNERVIEW_USER: 'InnerviewUser'
+                INNERVIEW_USER: 'InnerviewUser',
+                TWIT: "Twit"
             };
 
             //innerview user role
