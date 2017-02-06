@@ -4,7 +4,7 @@ var variable = {
   //server variable
   server: {
     dev:{
-      port: 3000,
+      port: 8080,
       host: "localhost"
     },
     prod :{

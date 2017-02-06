@@ -14,7 +14,7 @@ angular.module('web-api-twitter')
             //innerview server configuration
             var server = {
                 port: {
-                    dev: 3000,
+                    dev: 8080,
                     prod: 8080
                 },
                 host: {
